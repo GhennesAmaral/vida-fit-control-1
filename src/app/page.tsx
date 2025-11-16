@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Heart, Droplets, Moon, TrendingUp, Sparkles, Check, Star, Zap, Shield, Award } from 'lucide-react';
+import { Heart, Droplets, Moon, TrendingUp, Sparkles, Check, Star, Zap, Shield, Award, Flame } from 'lucide-react';
 import Link from 'next/link';
 
 export default function LandingPage() {
@@ -23,14 +23,14 @@ export default function LandingPage() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/app">
+            <Link href="/auth">
               <Button variant="ghost" className="hidden sm:inline-flex">
                 Entrar
               </Button>
             </Link>
-            <Link href="/app">
+            <Link href="/auth">
               <Button className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg shadow-teal-500/30">
-                Começar Grátis
+                Assinar por R$ 5/mês
               </Button>
             </Link>
           </div>
@@ -54,14 +54,14 @@ export default function LandingPage() {
             </h1>
             
             <p className="text-xl text-gray-600 leading-relaxed">
-              Melhore seus hábitos, receba relatórios inteligentes e viva com mais leveza. 
-              Controle sua vida com praticidade e inteligência.
+              Controle suas calorias, melhore seus hábitos e receba relatórios inteligentes. 
+              Viva com mais leveza e praticidade.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/app" className="flex-1 sm:flex-initial">
+              <Link href="/auth" className="flex-1 sm:flex-initial">
                 <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-xl shadow-teal-500/30 text-lg px-8 py-6">
-                  Baixar Agora
+                  Assinar Agora
                   <Zap className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
@@ -100,10 +100,10 @@ export default function LandingPage() {
                 </div>
                 
                 <div className="space-y-4">
+                  <HabitCard icon={Flame} label="Calorias" value="1.850" goal="2.000" color="orange" />
                   <HabitCard icon={TrendingUp} label="Passos" value="8.432" goal="10.000" color="teal" />
                   <HabitCard icon={Droplets} label="Água" value="1.8L" goal="2.5L" color="blue" />
                   <HabitCard icon={Moon} label="Sono" value="7h 30m" goal="8h" color="purple" />
-                  <HabitCard icon={Heart} label="Humor" value="Ótimo" goal="Feliz" color="pink" />
                 </div>
 
                 <div className="pt-4 border-t">
@@ -139,6 +139,12 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <FeatureCard
+              icon={Flame}
+              title="Contador de Calorias"
+              description="Acompanhe sua alimentação diária com precisão. Registre refeições e monitore seu consumo calórico em tempo real."
+              color="orange"
+            />
+            <FeatureCard
               icon={Heart}
               title="Painel de Hábitos"
               description="Acompanhe passos, água, sono, humor e alimentação em um só lugar. Visualize seu progresso com gráficos inteligentes."
@@ -167,12 +173,6 @@ export default function LandingPage() {
               title="Modo Foco"
               description="Sessões guiadas de respiração e meditação de 5 minutos para momentos de autocuidado."
               color="green"
-            />
-            <FeatureCard
-              icon={Zap}
-              title="Notificações Inteligentes"
-              description="Lembretes personalizados e motivacionais para manter você no caminho certo, sem ser invasivo."
-              color="orange"
             />
           </div>
         </div>
@@ -215,57 +215,31 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Planos e <span className="text-teal-600">Valores</span>
+              Plano <span className="text-teal-600">Premium</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Escolha o plano ideal para sua jornada de bem-estar
+              Acesso completo por apenas R$ 5,00 por mês
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <PricingCard
-              name="Gratuito"
-              price="R$ 0"
-              period="para sempre"
-              features={[
-                'Painel básico de hábitos',
-                'Registro diário limitado',
-                'Gráficos simples',
-                'Moedas de energia'
-              ]}
-              cta="Começar Grátis"
-              variant="outline"
-            />
-            
+          <div className="max-w-md mx-auto">
             <PricingCard
               name="Premium"
               price="R$ 5"
               period="por mês"
               features={[
-                'Painel completo ilimitado',
+                'Contador de calorias ilimitado',
+                'Painel completo de hábitos',
                 'Histórico sem limites',
                 'Relatórios semanais automáticos',
+                'IA personalizada incluída',
                 'Modo respiração e foco',
                 'Notificações personalizadas',
                 'Suporte prioritário'
               ]}
-              cta="Assinar Premium"
+              cta="Assinar Agora"
               variant="primary"
               popular
-            />
-            
-            <PricingCard
-              name="Pesquisa IA"
-              price="R$ 10"
-              period="por pesquisa"
-              features={[
-                'Relatório personalizado',
-                'Análise completa por IA',
-                'Salvo no histórico',
-                'Recomendações exclusivas'
-              ]}
-              cta="Fazer Pesquisa"
-              variant="outline"
             />
           </div>
         </div>
@@ -312,9 +286,9 @@ export default function LandingPage() {
           <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
             Junte-se a milhares de pessoas que já estão vivendo com mais equilíbrio e bem-estar
           </p>
-          <Link href="/app">
+          <Link href="/auth">
             <Button size="lg" className="bg-white text-teal-600 hover:bg-teal-50 shadow-xl text-lg px-12 py-6">
-              Baixar Agora - É Grátis
+              Assinar por R$ 5/mês
               <Zap className="ml-2 w-5 h-5" />
             </Button>
           </Link>
@@ -380,7 +354,8 @@ function HabitCard({ icon: Icon, label, value, goal, color }: any) {
     teal: 'bg-teal-100 text-teal-600',
     blue: 'bg-blue-100 text-blue-600',
     purple: 'bg-purple-100 text-purple-600',
-    pink: 'bg-pink-100 text-pink-600'
+    pink: 'bg-pink-100 text-pink-600',
+    orange: 'bg-orange-100 text-orange-600'
   };
 
   return (
@@ -453,16 +428,18 @@ function PricingCard({ name, price, period, features, cta, variant, popular }: a
         ))}
       </ul>
 
-      <Button 
-        className={`w-full ${
-          variant === 'primary' 
-            ? 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg shadow-teal-500/30' 
-            : 'border-2 border-teal-200 hover:bg-teal-50'
-        }`}
-        variant={variant === 'primary' ? 'default' : 'outline'}
-      >
-        {cta}
-      </Button>
+      <Link href="/auth">
+        <Button 
+          className={`w-full ${
+            variant === 'primary' 
+              ? 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg shadow-teal-500/30' 
+              : 'border-2 border-teal-200 hover:bg-teal-50'
+          }`}
+          variant={variant === 'primary' ? 'default' : 'outline'}
+        >
+          {cta}
+        </Button>
+      </Link>
     </Card>
   );
 }
